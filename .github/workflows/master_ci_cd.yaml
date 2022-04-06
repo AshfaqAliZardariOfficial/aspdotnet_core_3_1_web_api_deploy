@@ -24,4 +24,4 @@ jobs:
 
       -
        name: Build app
-       run: dotnet build -c Release --no-restore
+       run: dotnet build -c Release --no-restore -o C:\inetpub\wwwroot\ExamTestingSystemAPI_TestDeploy
