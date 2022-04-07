@@ -34,4 +34,4 @@ jobs:
 
       -
        name: Build app
-       run: dotnet build -c Release --no-restore -o ${{ secrets.SERVER_PUBLISH_ROOT }}
+       run: dotnet build -c Release --no-restore -o ${{ secrets.DEV_SERVER_PUBLISH_ROOT }}
