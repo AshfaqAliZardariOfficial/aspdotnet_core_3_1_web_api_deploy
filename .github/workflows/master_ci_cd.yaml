@@ -7,21 +7,31 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    environment: PRE_PRODUCTION
     steps:
       -
         name: Checkout code 
         uses: actions/checkout@v2
-
+      
       # -
       #   name: Setup .NET Core SDK
       #   uses: actions/setup-dotnet@v2
       #   with:
       #     dotnet-version: '3.1.x'
 
+      - 
+        name: App Settings Variable Substitution
+        uses: microsoft/variable-substitution@v1 
+        with:
+          files: './aspdotnet_core_3_1_web_api_deploy/appsettings.json'
+        env:
+          DBConnections.LOGS_DB: ${{ env.LOGS_DB }}
+          DBConnections.DEFAULT_DB: ${{ env.DEFAULT_DB }}
+          
       -
         name: Restore dependencies
         run: dotnet restore
 
       -
        name: Build app
-       run: dotnet build -c Release --no-restore -o C:\inetpub\wwwroot\ExamTestingSystemAPI_TestDeploy
+       run: dotnet build -c Release --no-restore -o ${{ env.SERVER_PUBLISH_ROOT }}
