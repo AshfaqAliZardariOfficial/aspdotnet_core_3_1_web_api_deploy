@@ -23,7 +23,7 @@ jobs:
         name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1 
         with:
-          files: './aspdotnet_core_3_1_web_api_deploy/appsettings.json'
+          files: 'Application/appsettings.json'
         env:
           DBConnections.LOGS_DB: ${{ secrets.LOGS_DB }}
           DBConnections.DEFAULT_DB: ${{ secrets.DEFAULT_DB }}
